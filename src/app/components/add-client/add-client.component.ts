@@ -5,6 +5,7 @@ import{ClientService} from '../../services/client.service';
 import {Router} from '@angular/router';
 import {Client} from '../../models/Client';
 import { FormGroup } from '@angular/forms';
+import{SettingsService} from '../../services/settings.service';
 @Component({
   selector: 'app-add-client',
   templateUrl: './add-client.component.html',
@@ -19,7 +20,7 @@ export class AddClientComponent implements OnInit {
     balance : 0
   }
 
-  disableBalanceOnAdd: boolean = true;
+  disableBalanceOnAdd: boolean;
 
   //  SET A VIEWCHIld name of a form
   @ViewChild('clientForm') form: any;
@@ -27,9 +28,11 @@ export class AddClientComponent implements OnInit {
   constructor(
     private flashMessage : FlashMessagesService,
     private clientService: ClientService,
-    private router: Router) { }
+    private router: Router,
+    private settingsService: SettingsService) { }
 
   ngOnInit(): void {
+    this.disableBalanceOnAdd = this.settingsService.getSettings().disableBalanceOnAdd;
   }
   //  take values and valid
   // can blackout button as well

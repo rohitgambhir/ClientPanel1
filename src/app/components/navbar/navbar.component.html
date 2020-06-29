@@ -14,7 +14,7 @@
             <li *ngIf="!isLoggedIn" class="nav-item">
                 <a routerLink="/login" class="nav-link">Login</a>
             </li>
-            <li *ngIf="!isLoggedIn"class="nav-item">
+            <li *ngIf="!isLoggedIn && showRegister"class="nav-item">
                 <a routerLink="/register" class="nav-link">Register</a>
             </li>
 

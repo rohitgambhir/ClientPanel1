@@ -5,6 +5,7 @@ import {ClientService} from '../../services/client.service';
 import {Client} from '../../models/Client';
 import{Router , ActivatedRoute , Params} from '@angular/router';
 import {FlashMessagesService} from 'angular2-flash-messages';
+import{SettingsService} from '../../services/settings.service';
 @Component({
   selector: 'app-edit-client',
   templateUrl: './edit-client.component.html',
@@ -20,14 +21,16 @@ export class EditClientComponent implements OnInit {
       balance:0
     }
     // will come from settings 
-    disableBalanceOnEdit: boolean = true;
+    disableBalanceOnEdit: boolean;
   constructor(private clientService: ClientService,
     private router: Router,
     private route: ActivatedRoute,
-    private flashMessage: FlashMessagesService) { }
+    private flashMessage: FlashMessagesService ,
+    private settingsService: SettingsService) { }
 
     ngOnInit(): void {
       // need to get  id from url when page loads.
+      this.disableBalanceOnEdit = this.settingsService.getSettings().disableBalanceOnEdit;
       this.id = this.route.snapshot.params['id'];
       // this is the way
   // 

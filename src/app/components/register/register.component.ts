@@ -18,6 +18,7 @@ export class RegisterComponent implements OnInit {
  ) { }
 
   ngOnInit(): void {
+    //this.router.navigate['/register'];
   }
   onSubmit() {
     this.authService.register(this.email , this.password).then(res=> {
